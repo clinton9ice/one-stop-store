@@ -4,7 +4,7 @@
       :width="500"
       title="Create a product"
       placement="right"
-      class="w-full"
+      class="w-"
       :open="isProductModalOpen"
       @close="toggleProductModal"
     >

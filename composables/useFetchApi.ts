@@ -7,12 +7,11 @@ import { FetchError, FetchOptions, ofetch } from "ofetch";
 export const useFetchApi = createFetch({
   baseUrl: "/api/",
   options: {
-    onFetchError(ctx: {
-      data: { errors: [] };
-      response: Response | null;
-      error: unknown;
-    }) {
-      useNotification().set(ctx as unknown as NotificationTypes);
+    onFetchError(ctx) {
+      useNotification().alert({
+        status: Number(ctx.response?.status),
+        message: ctx.data || ctx.error || ctx.response?.text,
+      });
       return {
         ...ctx,
         error: ctx.data?.errors || ctx.error,

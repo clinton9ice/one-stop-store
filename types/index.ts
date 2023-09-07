@@ -13,30 +13,6 @@ export interface CSSProperties
   [v: `--${string}`]: string | number | undefined;
 }
 export type StyleValue = string | CSSProperties | Array<StyleValue>;
-export type LoginTypes = {
-  email: string;
-  password: string;
-  roles?: string[];
-  redirect?: boolean;
-};
-
-export interface UserStore {
-  user: object | null;
-  isLoggedIn: boolean;
-}
-
-export interface UserResponse {
-  isFetching: boolean;
-  error: unknown;
-  data: {
-    user: {
-      first_name: string;
-      last_name: string;
-      full_name: string;
-    };
-    isLoggedIn: boolean;
-  };
-}
 
 export type NotificationTypes = {
   data: {
@@ -59,15 +35,6 @@ export interface NotificationState {
   notificationStatus: number | null | string;
 }
 
-export interface UserAuthType {
-  value: {
-    data: {
-      user: object;
-      isLoggedIn: boolean;
-    };
-  };
-}
-
 export interface UserDropDown {
   name: string;
   href?: string;
@@ -82,3 +49,28 @@ export type ProductContext = {
   unitPrice: number;
   unitsInStock: number;
 };
+
+export type CustomerInformation = {
+  customerFirstName: string;
+  customerLastName: string;
+  customerEmail: string;
+};
+export type Address = {
+  street: string;
+  city: string;
+  state: string;
+  country: string;
+};
+export type OrderItem = {
+  unitPrice: number;
+  quantity: number;
+  productId: number;
+};
+
+export type OrderContext = {
+  totalQuantity: number;
+  totalPrice: number;
+  orderItems: OrderItem[] | [];
+  billingAddress: Address;
+  shippingAddress: Address;
+} & CustomerInformation;

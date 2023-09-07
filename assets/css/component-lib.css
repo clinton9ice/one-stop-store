@@ -164,3 +164,6 @@ input:not([type="checkbox"]):not(.custom) {
 .ant-select-single.ant-select-show-arrow .ant-select-selection-search {
   @apply pt-[0.4rem];
 }
+.ant-drawer-content-wrapper {
+  @apply !w-full !max-w-[500px];
+}
