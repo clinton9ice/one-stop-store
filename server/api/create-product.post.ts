@@ -7,8 +7,8 @@ export default defineEventHandler(async (event) => {
       body: response,
     });
 
-    return { status: 200, ...sent };
+    return sent;
   } catch (error) {
-    return error;
+    throw createError(error as string);
   }
 });

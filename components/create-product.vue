@@ -190,6 +190,7 @@ const formDetails = reactive({
   imageUrl: "",
   unitsInStock: 0,
 });
+
 const productCategory = computed(() => {
   return useStore().$state.productCategories;
 });
@@ -211,13 +212,21 @@ const createProduct = () => {
           ?.src as string;
       }
 
+      type FetchResponse = {
+        data: any;
+        response: Response | null;
+        error: any;
+      };
+
       try {
-        const { data } = await useFetch("/api/create-product", {
-          method: "POST",
-          body: formDetails,
-        });
+        const { data } = await useFetchApi("/create-product").post(formDetails);
         if (data.value) {
-          refreshNuxtData();
+          useNotification().alert({
+            message: "Product added successfully",
+            status: 200,
+          });
+          toggleProductModal();
+          TimeOut().finally(() => location.reload());
         }
       } catch (error) {
       } finally {

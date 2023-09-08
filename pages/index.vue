@@ -31,7 +31,7 @@ watch(isFetching, async (e) => {
 </script>
 
 <template>
-  <div class="grid md:grid-cols-2 justify-center lg:grid-cols-4 pt-20 gap-10">
+  <div class="grid sm:grid-cols-2 justify- lg:grid-cols-4 pt-20 gap-10 px-4">
     <template v-if="loading">
       <div
         v-for="(item, index) in 12"
@@ -44,7 +44,7 @@ watch(isFetching, async (e) => {
       <div
         v-for="(item, index) in allProducts"
         :key="index"
-        class="min-h-[300px] max-w-[250px] w-full group border rounded-lg bg-white border-gray-200 relative light-shadow transition cursor-pointer hover:-translate-y-5"
+        class="min-h-[300px] max-w-[300px] md:max-w-[250px] w-full group border rounded-lg bg-white border-gray-200 relative light-shadow transition cursor-pointer hover:-translate-y-5"
         @click="selectProduct(item)"
       >
         <div class="relative">
@@ -103,7 +103,9 @@ watch(isFetching, async (e) => {
           >
             {{ item.name }}
           </h3>
-          <p class="text-gray-500 text-xs leading-tight">
+          <p
+            class="text-gray-500 text-xs leading-tight max-h-[90px] overflow-hidden text-ellipsis"
+          >
             {{ item.description }}
           </p>
         </footer>

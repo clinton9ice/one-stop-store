@@ -7,10 +7,15 @@ import { FetchError, FetchOptions, ofetch } from "ofetch";
 export const useFetchApi = createFetch({
   baseUrl: "/api/",
   options: {
+    beforeFetch({ options }) {
+      return { options };
+    },
     onFetchError(ctx) {
+      console.error("fetch error: ", ctx);
+
       useNotification().alert({
         status: Number(ctx.response?.status),
-        message: ctx.data || ctx.error || ctx.response?.text,
+        message: ctx.error || ctx.response?.statusText,
       });
       return {
         ...ctx,
